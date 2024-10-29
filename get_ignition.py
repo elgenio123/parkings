@@ -6,7 +6,7 @@ print('Modules imported successfully')
 print('Loading data...')
 chunk_size = 500000  # Number of rows per chunk
 all_data = []
-for chunk in pd.read_csv('data_lewoo_202409.csv', chunksize=chunk_size):
+for chunk in pd.read_csv('../parking_data.csv', chunksize=chunk_size):
     chunk = chunk[['uniqueid', 'lat', 'lng', 'pluscode',  'event_flag', 'created_on', 'isha','ishb']]
     chunk = chunk.rename(columns={'uniqueid': 'unique_id', 'created_on': 'timestamp', 'lng': 'lon'})
     all_data.append(chunk)
@@ -66,7 +66,7 @@ result = grouped.apply(get_first_last_ignition).reset_index()
 print("Succeeded")
 
 print("Loading pluscodes table")
-pluscodes = pd.read_csv('pluscode.csv', on_bad_lines='skip')
+pluscodes = pd.read_csv('../location.csv', on_bad_lines='skip')
 pluscodes.columns = ['plucode', 'location', 'none', 'timestamp']
 pluscodes = pluscodes.drop(columns=['none', 'timestamp'])
 

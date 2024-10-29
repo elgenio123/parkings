@@ -2,6 +2,7 @@
 import pandas as pd
 from helpers import get_frequent_parking_interval, to_hour
 
+print("Get permanent time")
 vehicle = pd.read_excel('results.xlsx')
 vehicle['last_ignition_off'] = pd.to_datetime(vehicle['last_ignition_off'])
 vehicle['hour'] = vehicle['last_ignition_off'].dt.hour
